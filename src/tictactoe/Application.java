@@ -24,9 +24,10 @@ public class Application
 	{
 		writeLine("Welcome to Tic-Tac-Toe");
 		writeLine("Enter 'q' or 'quit' to exit");
-		writeLine("Hit RETURN to quit");
-		String line = readLine();
-		writeLine(line);
+		//writeLine("Hit RETURN to quit");
+		//String line = readLine();
+		//writeLine(line);
+		writeLine(" -- Cave Johnson; we're done here!");
 	}
 
 	private void writeLine(String line)
