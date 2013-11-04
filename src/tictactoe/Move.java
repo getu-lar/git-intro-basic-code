@@ -13,6 +13,7 @@ public class Move
 	
 	public Move(Integer column, Integer row)
 	{
+		_isQuit = false;
 		_column = column;
 		_row = row;
 	}

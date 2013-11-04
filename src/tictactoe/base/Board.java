@@ -26,7 +26,7 @@ public class Board
 	private Player _playerX;
 	private Player _playerO;
 	private Player _currentPlayer;
-	private Boolean _isGameOver;
+	private Boolean _isGameOver = false;
 	private Player _winner;
 	
 	public Board()
@@ -34,7 +34,7 @@ public class Board
 		_fields = new ArrayList<Field>(9);
 		for (Integer i = 0; i < 9; i++)
 		{
-			_fields.set(0, new Field());
+			_fields.add(new Field());
 		}
 		
 		_playerX = new Player('X');
@@ -71,18 +71,19 @@ public class Board
 		writer.write("  ---+---+--- ");
 		writer.newLine();
 		writeRow(writer, 2);
+		writer.flush();
 	}
 	
 	private void writeRow(BufferedWriter writer, Integer row)
 			throws IOException
 	{
-		writer.write(Integer.toString(row + 1) + " ");
+		writer.write(Integer.toString(row + 1) + "  ");
 		for (Integer i = 0; i < 3; i++)
 		{
 			Player owner = getField(i, row).getOwner();
 			writer.write((owner == null ? ' ' : owner.getPlayerChar()) + "");
 			if (i < 2)
-				writer.write("|");
+				writer.write(" | ");
 		}
 		writer.newLine();
 	}
@@ -153,14 +154,15 @@ public class Board
 	
 	private void checkThree(Integer start, Integer increment)
 	{
-		_winner = getThreeOwner(start, increment);
-		if (_winner != null)
+		Player owner = getThreeOwner(start, increment);
+		if (owner != null)
 		{
 			Player victoryPlayer = new Player('*');
 			for (Integer i = 0; i < 3; i++)
 			{
 				_fields.get(start + i * increment).setOwner(victoryPlayer);
 			}
+			_winner = owner;
 		}
 	}
 	
