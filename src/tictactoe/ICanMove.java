@@ -2,5 +2,5 @@ package tictactoe;
 
 public interface ICanMove
 {
-	Move makeMove();
+	Move makeMove() throws Exception;
 }

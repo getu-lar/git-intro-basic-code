@@ -46,7 +46,7 @@ public class Application
 		
 		_players = new HashMap<Player, ICanMove>() {{
 			put(board.getPlayerO(), new TextPlayer(_reader, _writer));
-			put(board.getPlayerX(), new TextPlayer(_reader, _writer));
+			put(board.getPlayerX(), new AiPlayerRandom(board, board.getPlayerX()));
 		}};
 		
 		while (!board.getIsGameOver())
